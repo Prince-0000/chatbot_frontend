@@ -1,0 +1,77 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;600;900&display=swap");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --leva-sizes-rootWidth: 340px;
+}
+
+#root {
+  width: 100vw;
+  height: 100vh;
+}
+
+body {
+  margin: 0;
+  background-color: #faaca8;
+  background-image: linear-gradient(19deg, #faaca8 0%, #ddd6f3 100%);
+  overflow: hidden;
+}
+
+body.greenScreen {
+  background-color: #00ff00;
+  background-image: none;
+}
+
+.container {
+  max-width: 100vw;
+  max-height: 100vh;
+  width: 100vw;
+  height: 100vh;
+  display:flex;
+  justify-content: space-evenly;
+}
+
+.card{
+  border-radius: 8px;
+  border-color: 1px solid linear-gradient(201deg, #DEC3D3 0%, #E3B4B6 100%);
+  box-shadow: 4px 15px 34px 1px rgba(221, 173, 180, 0.20), 15px 59px 61px 0px rgba(221, 173, 180, 0.17), 34px 134px 83px 0px rgba(221, 173, 180, 0.10), 61px 238px 98px 0px rgba(221, 173, 180, 0.03), 95px 371px 107px 0px rgba(221, 173, 180, 0.00);
+  padding: 20px;
+  margin: 10px;
+  text-align: center;
+  max-width: 320px;
+  max-height: 460px;
+  position: relative;
+  top: 50%;
+  translate: 0 -280px;
+}
+
+.card-image{
+  width: 100%;
+  height: 55%;
+  margin-bottom: 10px;
+}
+
+.card-title {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  color: hsl(0, 0%, 20%);
+  font-weight: 600;
+  font-size: larger;
+}
+
+.card-text {
+  font-family: Arial, sans-serif;
+  color: hsl(0, 0%, 30%);
+}
+
+.card-btn {
+  border: 1px solid hsl(0, 0%, 30%);
+  background: linear-gradient(134deg, #2C2D2E 8.08%, #000 92.21%);
+  box-shadow: 2px 6px 20px 0px #E4A29E, 2px 2px 4px 0px rgba(224, 191, 204, 0.46) inset, -1.55135px -1.34857px 2.05556px 0px #041425 inset;
+  padding: 8px 16px;
+  margin-top: 72px;
+  border-radius: 4px;
+  color: azure;
+}
