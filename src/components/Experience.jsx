@@ -9,10 +9,10 @@ import { useChat } from "../hooks/useChat";
 import { Chacha } from "./Chacha";
 import { Maxxa } from "./Maxxa";
 import { Radhika } from "./Radhika";
-import { Canvas, useThree } from "@react-three/fiber";
+import { useThree } from "@react-three/fiber";
 
 const Dots = (props) => {
-  const { loading } = useChat();``
+  const { loading } = useChat();
   const [loadingText, setLoadingText] = useState("");
   useEffect(() => {
     if (loading) {
