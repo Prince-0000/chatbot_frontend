@@ -5,6 +5,7 @@ import { Experience } from "./components/Experience";
 import { Card } from './components/Card';
 import { UI } from "./components/UI";
 import Mic from './mic';
+import { AudioProvider } from "./AudioContext";
 
 function App() {
   const [selectedAvatar, setSelectedAvatar] = useState('Emma');
@@ -27,8 +28,9 @@ function App() {
 
   return (
     <>
+    <AudioProvider>
       <Mic />
-      <Leva  />
+      <Leva hidden />
       
       
 
@@ -37,6 +39,7 @@ function App() {
       <Canvas key={resetCanvas} shadows camera={{ position: [0, 0, 1], fov: 30 }}>
         <Experience selectedAvatar={selectedAvatar} />
       </Canvas>
+      </AudioProvider>
     </>
   );
 }

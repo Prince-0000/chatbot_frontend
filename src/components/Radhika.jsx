@@ -10,6 +10,7 @@ import React, { useEffect, useRef, useState } from "react";
 
 import * as THREE from "three";
 import { useChat } from "../hooks/useChat";
+import { useAudioContext } from "../AudioContext";
 
 const facialExpressions = {
   default: {},
@@ -109,29 +110,31 @@ let setupMode = false;
 export function Radhika(props) {
   const { nodes, materials, scene } = useGLTF("/models/Radhika.glb");
 
-  const { message, onMessagePlayed, chat } = useChat();
+  const { onMessagePlayed } = useChat();
+  const { message } = useAudioContext();
 
   const [lipsync, setLipsync] = useState();
 
   useEffect(() => {
-    console.log(message);
+    // console.log(message);
     if (!message) {
       setAnimation("Idle");
       return;
     }
-    setAnimation(message.animation);
-    setFacialExpression(message.facialExpression);
-    setLipsync(message.lipsync);
-    const audio = new Audio("data:audio/mp3;base64," + message.audio);
-    audio.play();
-    setAudio(audio);
-    audio.onended = onMessagePlayed;
+    setAnimation("Talking0");
+    setFacialExpression("smile");
+    // setLipsync(message.lipsync);
+    // const audio = new Audio("data:audio/mp3;base64," + message.audio);
+    // audio.play();
+    // setAudio(audio);
+    // audio.onended = onMessagePlayed;
   }, [message]);
 
   const { animations } = useGLTF("/models/anim-radhika.glb");
 
   const group = useRef();
   const { actions, mixer } = useAnimations(animations, group);
+  // console.log("actions", actions)
   const [animation, setAnimation] = useState(
     animations.find((a) => a.name === "Idle") ? "Idle" : animations[0].name // Check if Idle animation exists otherwise use first animation
   );
@@ -176,7 +179,7 @@ export function Radhika(props) {
   const [winkLeft, setWinkLeft] = useState(false);
   const [winkRight, setWinkRight] = useState(false);
   const [facialExpression, setFacialExpression] = useState("");
-  const [audio, setAudio] = useState();
+  // const [audio, setAudio] = useState();
 
   useFrame(() => {
     !setupMode &&
@@ -202,7 +205,7 @@ export function Radhika(props) {
 
     const appliedMorphTargets = [];
     if (message && lipsync) {
-      const currentAudioTime = audio.currentTime;
+      const currentAudioTime = 15
       for (let i = 0; i < lipsync.mouthCues.length; i++) {
         const mouthCue = lipsync.mouthCues[i];
         if (
@@ -225,7 +228,6 @@ export function Radhika(props) {
   });
 
   useControls("FacialExpressions", {
-    chat: button(() => chat()),
     winkLeft: button(() => {
       setWinkLeft(true);
       setTimeout(() => setWinkLeft(false), 300);
