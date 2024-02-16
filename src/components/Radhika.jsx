@@ -9,8 +9,8 @@ import { button, useControls } from "leva";
 import React, { useEffect, useRef, useState } from "react";
 
 import * as THREE from "three";
-import { useChat } from "../hooks/useChat";
-import { useAudioContext } from "../AudioContext";
+// import { useChat } from "../hooks/useChat";
+import { useAudioContext } from "../audio/AudioContext";
 
 const facialExpressions = {
   default: {},
@@ -110,7 +110,7 @@ let setupMode = false;
 export function Radhika(props) {
   const { nodes, materials, scene } = useGLTF("/models/Radhika.glb");
 
-  const { onMessagePlayed } = useChat();
+  // const { onMessagePlayed } = useChat();
   const { message } = useAudioContext();
 
   const [lipsync, setLipsync] = useState();

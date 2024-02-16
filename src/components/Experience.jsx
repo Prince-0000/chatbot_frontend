@@ -5,14 +5,11 @@ import {
   Text,
 } from "@react-three/drei";
 import { Suspense, useEffect, useRef, useState } from "react";
-import { useChat } from "../hooks/useChat";
-import { Chacha } from "./Chacha";
-import { Maxxa } from "./Maxxa";
 import { Radhika } from "./Radhika";
 import { useThree } from "@react-three/fiber";
 
 const Dots = (props) => {
-  const { loading } = useChat();
+const [loading, setLoading] = useState(false)
   const [loadingText, setLoadingText] = useState("");
   useEffect(() => {
     if (loading) {
@@ -42,7 +39,8 @@ const Dots = (props) => {
 
 export const Experience = ({ selectedAvatar }) => {
   const cameraControls = useRef();
-  const { cameraZoomed } = useChat();
+  const [cameraZoomed, setCameraZoomed] = useState(true)
+  // const { cameraZoomed } = useChat();
   const { gl } = useThree(); // Get access to the WebGLRenderer
 
   // Function to handle context loss
@@ -74,10 +72,6 @@ export const Experience = ({ selectedAvatar }) => {
     };
   }, [gl]);
 
-
-
-
-
   useEffect(() => {
     cameraControls.current.setLookAt(0, 2, 5, 0, 1.5, 0);
   }, []);
@@ -98,8 +92,6 @@ export const Experience = ({ selectedAvatar }) => {
         <Dots position-y={1.75} position-x={-0.02} />
       </Suspense>
       {selectedAvatar === 'Emma' && <Radhika />}
-      {selectedAvatar === 'Maxxa' && <Maxxa />}
-      {selectedAvatar === 'Chacha' && <Chacha />}
       <ContactShadows opacity={0.7} />
     </>
   );
